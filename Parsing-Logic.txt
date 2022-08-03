@@ -1,0 +1,300 @@
+
+String.prototype.toProperCase = function () {
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+var gs_key = "";
+var segment_key = "";
+var segment_key_2 = "$$$";
+var counter = 0;
+var deep_check = 0;
+for (let interchanges in obj) { 
+  // console.log(main.toProperCase());
+  
+  
+  //**************** Start of Interchange ************
+  for(let interchange_idx in obj[interchanges]){
+    
+     for (let interchange_keys in obj[interchanges][interchange_idx]){
+      if (counter === 0){
+        segment_key = interchange_keys;
+        counter++;
+      }
+     else if(counter!= 0){
+        segment_key_2 = interchange_keys.split("_")[0];
+      }
+      if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+        
+		//**************** Level Two ****************
+        for (let LevelTwo_idx in obj[interchanges][interchange_idx][interchange_keys])
+            {
+				counter = 0;
+				segment_key_2 = "$$$";
+            for (let LevelTwo_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx]){
+              if (counter === 0){
+                segment_key = LevelTwo_keys;
+                counter++;
+              }
+             else if(counter!= 0){
+                // console.log("Checking level two");
+                segment_key_2 = LevelTwo_keys.split("_")[0];
+              }
+              
+              if(segment_key != segment_key_2 && segment_key_2 != "$$$")
+              { 
+                    
+                    //**************** Level Three ****************
+                    for (let LevelThree_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys])
+                        {
+							counter = 0;
+							segment_key_2 = "$$$";
+                        for (let LevelThree_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx]){
+                          if (counter === 0){
+                            console.log(LevelThree_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys]);
+                            counter++;
+                          }
+                        else if (counter === 1){
+                            segment_key = LevelThree_keys;
+                            counter++;
+                          }
+                         else if(counter!= 1 && counter!= 0){
+                            segment_key_2 = LevelThree_keys.split("_")[0];
+                          }
+                          
+                        if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+                            // counter = 0;
+                        
+                            //**************** Level Four ****************
+                            for (let LevelFour_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys])
+                                {
+                                   counter = 0;
+                                   segment_key_2 = "$$$";
+                                for (let LevelFour_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx]){
+                                  if (counter === 0){
+                                    segment_key = LevelFour_keys;
+                                    counter++;
+                                  }
+                                 else if(counter!= 0){
+                                    segment_key_2 = LevelFour_keys.split("_")[0];
+                                  }
+                                  
+                                  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+                                      
+										//**************** Level Five ****************
+										for (let LevelFive_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys])
+											{
+											   counter = 0;
+											   segment_key_2 = "$$$";
+											for (let LevelFive_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx]){
+											  if (counter === 0){
+												segment_key = LevelFive_keys;
+												counter++;
+											  }
+											 else if(counter!= 0){
+												segment_key_2 = LevelFive_keys.split("_")[0];
+											  }
+											  
+											  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+												  
+													//**************** Level Six ****************
+													for (let LevelSix_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys])
+														{
+														   counter = 0;
+														   segment_key_2 = "$$$";
+														for (let LevelSix_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx]){
+														  if (counter === 0){
+															segment_key = LevelSix_keys;
+															counter++;
+														  }
+														 else if(counter!= 0){
+															segment_key_2 = LevelSix_keys.split("_")[0];
+														  }
+														  
+														  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+															  
+																//**************** Level Seven ****************
+																for (let LevelSeven_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys])
+																	{
+																	   counter = 0;
+																	   segment_key_2 = "$$$";
+																	for (let LevelSeven_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx]){
+																	  if (counter === 0){
+																		segment_key = LevelSeven_keys;
+																		counter++;
+																	  }
+																	 else if(counter!= 0){
+																		segment_key_2 = LevelSeven_keys.split("_")[0];
+																	  }
+																	  
+																	  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+																	  
+																			//**************** Level Eight ****************
+																			for (let LevelEight_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys])
+																				{
+																				   counter = 0;
+																				   segment_key_2 = "$$$";
+																				for (let LevelEight_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx]){
+																				  if (counter === 0){
+																					segment_key = LevelEight_keys;
+																					counter++;
+																				  }
+																				 else if(counter!= 0){
+																					segment_key_2 = LevelEight_keys.split("_")[0];
+																				  }
+																				  
+																				  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+																				  
+																						//************ Level Nine ********************
+																						for (let LevelNine_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys])
+																							{
+																							   counter = 0;
+																							   segment_key_2 = "$$$";
+																							for (let LevelNine_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx]){
+																							  if (counter === 0){
+																								segment_key = LevelNine_keys;
+																								counter++;
+																							  }
+																							 else if(counter!= 0){
+																								segment_key_2 = LevelNine_keys.split("_")[0];
+																							  }
+																							  
+																							  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+																							  
+																								   //**************** Level Ten ****************
+																									for (let LevelTen_idx in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys])
+																										{
+																										   counter = 0;
+																										   segment_key_2 = "$$$";
+																										for (let LevelTen_keys in obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx]){
+																										  if (counter === 0){
+																											segment_key = LevelTen_keys;
+																											counter++;
+																										  }
+																										 else if(counter!= 0){
+																											segment_key_2 = LevelTen_keys.split("_")[0];
+																										  }
+																										  
+																										  if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+																											  // var gs_key = interchange_keys;
+																										  }
+																										  else if(LevelTen_keys === segment_key){
+																											  console.log(LevelTen_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys]);
+																										  }
+																										  else{ 
+																											  var s = LevelTen_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+																										  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+LevelFive_idx+" "+LevelFive_keys+" "+LevelSix_idx+" "+LevelSix_keys+" "+LevelSeven_idx+" "+LevelSeven_keys+" "+LevelEight_idx+" "+LevelEight_keys+" "+LevelNine_idx+" "+LevelNine_keys+" "+LevelTen_idx+" "+LevelTen_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys]);
+																										 }
+																									  
+																										}
+																									  }
+																									//****************** End of Ten ***************
+																							  }
+																							  else if(LevelNine_keys === segment_key){
+																								  console.log(LevelNine_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys]);
+																							  }
+																							  else{ 
+																								  var s = LevelNine_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+																							  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+LevelFive_idx+" "+LevelFive_keys+" "+LevelSix_idx+" "+LevelSix_keys+" "+LevelSeven_idx+" "+LevelSeven_keys+" "+LevelEight_idx+" "+LevelEighr_keys+" "+LevelNine_idx+" "+LevelNine_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys]);
+																							 }
+																						  
+																							}
+																						  }
+																						//****************** End of Nine ***************
+																				  }
+																				  else if(LevelEight_keys === segment_key){
+																					  console.log(LevelEight_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys]);
+																				  }
+																				  else{ 
+																					  var s = LevelEight_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+																				  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+LevelFive_idx+" "+LevelFive_keys+" "+LevelSix_idx+" "+LevelSix_keys+" "+LevelSeven_idx+" "+LevelSeven_keys+" "+LevelEight_idx+" "+LevelEight_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys]);
+																				 }
+																			  
+																				}
+																			  }
+																			//****************** End of Eight ***************
+																	  }
+																	  else if(LevelSeven_keys === segment_key){
+																		  console.log(LevelSeven_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys]);
+																	  }
+																	  else{ 
+																		  var s = LevelSeven_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+																	  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+LevelFive_idx+" "+LevelFive_keys+" "+LevelSix_idx+" "+LevelSix_keys+" "+LevelSeven_idx+" "+LevelSeven_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys]);
+																	 }
+																  
+																	}
+																  }
+																//****************** End of Seven ***************
+														  }
+														  else if(LevelSix_keys === segment_key){
+															  console.log(LevelSix_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys]);
+														  }
+														  else{ 
+															  var s = LevelSix_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+														  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+LevelFive_idx+" "+LevelFive_keys+" "+LevelSix_idx+" "+LevelSix_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys]);
+														 }
+													  
+														}
+													  }
+													//****************** End of Six ***************
+											  }
+											  else if(LevelFive_keys === segment_key){
+												  console.log("Checking"+LevelFive_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys]);
+											  }
+											  else{ 
+												  var s = LevelFive_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+											  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+LevelFive_idx+" "+LevelFive_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys]);
+											 }
+										  
+											}
+										  }
+										//****************** End of Five ***************
+                                  }
+                                  else if(LevelFour_keys === segment_key){
+                                      console.log(LevelFour_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys]);
+                                  }
+                                  else{ 
+                                      var s = LevelFour_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                  console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+ " "+LevelThree_idx+" "+LevelThree_keys+" "+ " "+LevelFour_idx+" "+LevelFour_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys]);
+                                 }
+                              
+                                }
+                              }
+							//****************** End of Four ***************  
+                          }
+                          else if(LevelThree_keys === segment_key){
+                              console.log(LevelThree_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys]);
+                          }
+                         else{ 
+                            
+                              var s = LevelThree_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                          console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+LevelThree_idx+" "+LevelThree_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys]);
+                         }
+                      
+                        }
+                      }
+					//****************** End of Three ***************
+              }
+              else if(LevelTwo_keys === segment_key){
+                  // console.log("Checking Level Two Heading");
+                  console.log(LevelTwo_keys+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys]);
+              }
+              else{ 
+                // console.log("Checking Level Two Data");
+                  var s = LevelTwo_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+              console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+LevelTwo_idx+" "+LevelTwo_keys+" "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys]);
+             }
+          
+            }
+          }
+		//****************** End of Two ***************  
+      }
+      else if(interchange_keys === segment_key){
+          console.log(interchange_keys+" : "+obj[interchanges][interchange_idx][interchange_keys]);
+      }
+      else{ 
+          var s = interchange_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+      console.log(interchanges+" "+interchange_idx+" "+interchange_keys+ " "+s.split("_")[2]+" : "+obj[interchanges][interchange_idx][interchange_keys]);
+     }
+  }
+}
+//****************** End of Interchange ***************
+}

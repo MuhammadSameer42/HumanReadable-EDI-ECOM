@@ -1,0 +1,310 @@
+{
+  "interchanges": [
+    {
+      "ISA": "Interchange Control Header",
+      "ISA_01_AuthorizationQualifier": "00",
+      "ISA_02_AuthorizationInformation": "          ",
+      "ISA_03_SecurityQualifier": "00",
+      "ISA_04_SecurityInformation": "          ",
+      "ISA_05_SenderQualifier": "ZZ",
+      "ISA_06_SenderId": "04000          ",
+      "ISA_07_ReceiverQualifier": "ZZ",
+      "ISA_08_ReceiverId": "55908          ",
+      "ISA_09_Date": "201201",
+      "ISA_10_Time": "0243",
+      "ISA_11_StandardsId": "U",
+      "ISA_12_Version": "00204",
+      "ISA_13_InterchangeControlNumber": "000014373",
+      "ISA_14_AcknowledgmentRequested": "0",
+      "ISA_15_TestIndicator": "P",
+      "functional_groups": [
+        {
+          "GS": "Functional Group Header",
+          "GS_01_FunctionalIdentifierCode": "PS",
+          "GS_02_ApplicationSenderCode": "04000",
+          "GS_03_ApplicationReceiverCode": "55908",
+          "GS_04_Date": "201201",
+          "GS_05_Time": "0243",
+          "GS_06_GroupControlNumber": "858",
+          "GS_07_ResponsibleAgencyCode": "X",
+          "GS_08_Version": "002040",
+          "transactions": [
+            {
+              "830": "Planning Schedule with Release Capability",
+              "ST": "Transaction Set Header",
+              "ST_01_TransactionSetIdentifierCode": "830",
+              "ST_02_TransactionSetControlNumber": "000002080",
+              "segments": [
+                {
+                  "BFR": "Beginning Segment for Planning Schedule",
+                  "BFR_01_description": "Transaction Set Purpose Code",
+                  "BFR_01": "05",
+                  "BFR_01_code_05": "Replace",
+                  "BFR_03_description": "Release Number",
+                  "BFR_03": "086-6",
+                  "BFR_04_description": "Schedule Type Qualifier",
+                  "BFR_04": "SH",
+                  "BFR_04_code_SH": "Shipment Based",
+                  "BFR_05_description": "Schedule Quantity Qualifier",
+                  "BFR_05": "A",
+                  "BFR_05_code_A": "Actual Discrete Quantities",
+                  "BFR_06_description": "Date",
+                  "BFR_06": "201129",
+                  "BFR_07_description": "Date",
+                  "BFR_07": "211231",
+                  "BFR_08_description": "Date",
+                  "BFR_08": "201130"
+                },
+                {
+                  "N1": "Party Identification",
+                  "N1_01_description": "Entity Identifier Code",
+                  "N1_01": "MI",
+                  "N1_01_code_MI": "Planning Schedule/Material Release Issuer",
+                  "N1_03_description": "Identification Code Qualifier",
+                  "N1_03": "92",
+                  "N1_03_code_92": "Assigned by Buyer or Buyer's Agent",
+                  "N1_04_description": "Identification Code",
+                  "N1_04": "04000"
+                },
+                {
+                  "N1": "Party Identification",
+                  "N1_01_description": "Entity Identifier Code",
+                  "N1_01": "SU",
+                  "N1_01_code_SU": "Supplier/Manufacturer",
+                  "N1_03_description": "Identification Code Qualifier",
+                  "N1_03": "92",
+                  "N1_03_code_92": "Assigned by Buyer or Buyer's Agent",
+                  "N1_04_description": "Identification Code",
+                  "N1_04": "55908"
+                },
+                {
+                  "LIN": "Item Identification",
+                  "LIN_02_description": "Product/Service ID Qualifier",
+                  "LIN_02": "BP",
+                  "LIN_02_code_BP": "Buyer's Part Number",
+                  "LIN_03_description": "Product/Service ID",
+                  "LIN_03": "04726774AA",
+                  "LIN_04_description": "Product/Service ID Qualifier",
+                  "LIN_04": "PO",
+                  "LIN_04_code_PO": "Purchase Order Number",
+                  "LIN_05_description": "Product/Service ID",
+                  "LIN_05": "11020882"
+                },
+                {
+                  "UIT": "Unit Detail",
+                  "UIT_01_description": "Composite Unit of Measure",
+                  "UIT_01": "EA"
+                },
+                {
+                  "PID": "Product/Item Description",
+                  "PID_01_description": "Item Description Type",
+                  "PID_01": "F",
+                  "PID_01_code_F": "Free-form",
+                  "PID_05_description": "Description",
+                  "PID_05": "GROUP FOLLOW"
+                },
+                {
+                  "PER": "Administrative Communications Contact",
+                  "PER_01_description": "Contact Function Code",
+                  "PER_01": "EX",
+                  "PER_01_code_EX": "Expeditor",
+                  "PER_02_description": "Name",
+                  "PER_02": "GROUPDECK601",
+                  "PER_03_description": "Communication Number Qualifier",
+                  "PER_03": "TE",
+                  "PER_03_code_TE": "Telephone",
+                  "PER_04_description": "Communication Number",
+                  "PER_04": "2488382614"
+                },
+                {
+                  "N1": "Party Identification",
+                  "N1_01_description": "Entity Identifier Code",
+                  "N1_01": "SF",
+                  "N1_01_code_SF": "Ship From",
+                  "N1_03_description": "Identification Code Qualifier",
+                  "N1_03": "92",
+                  "N1_03_code_92": "Assigned by Buyer or Buyer's Agent",
+                  "N1_04_description": "Identification Code",
+                  "N1_04": "55908E"
+                },
+                {
+                  "N1": "Party Identification",
+                  "N1_01_description": "Entity Identifier Code",
+                  "N1_01": "ST",
+                  "N1_01_code_ST": "Ship To",
+                  "N1_03_description": "Identification Code Qualifier",
+                  "N1_03": "92",
+                  "N1_03_code_92": "Assigned by Buyer or Buyer's Agent",
+                  "N1_04_description": "Identification Code",
+                  "N1_04": "02452W"
+                },
+                {
+                  "N1": "Party Identification",
+                  "N1_01_description": "Entity Identifier Code",
+                  "N1_01": "MA",
+                  "N1_01_code_MA": "Party for whom Item is Ultimately Intended",
+                  "N1_03_description": "Identification Code Qualifier",
+                  "N1_03": "92",
+                  "N1_03_code_92": "Assigned by Buyer or Buyer's Agent",
+                  "N1_04_description": "Identification Code",
+                  "N1_04": "02452"
+                },
+                {
+                  "REF": "Reference Information",
+                  "REF_01_description": "Reference Identification Qualifier",
+                  "REF_01": "DK",
+                  "REF_01_code_DK": "Dock Number",
+                  "REF_02_description": "Reference Identification",
+                  "REF_02": "OD"
+                },
+                {
+                  "REF": "Reference Information",
+                  "REF_01_description": "Reference Identification Qualifier",
+                  "REF_01": "LF",
+                  "REF_01_code_LF": "Assembly Line Feed Location",
+                  "REF_02_description": "Reference Identification",
+                  "REF_02": "1658"
+                },
+                {
+                  "REF": "Reference Information",
+                  "REF_01_description": "Reference Identification Qualifier",
+                  "REF_01": "RL",
+                  "REF_01_code_RL": "Reserve Assembly Line Feed Location",
+                  "REF_02_description": "Reference Identification",
+                  "REF_02": "SPD"
+                },
+                {
+                  "SDP": "Ship/Delivery Pattern",
+                  "SDP_01_description": "Ship/Delivery or Calendar Pattern Code",
+                  "SDP_01": "N",
+                  "SDP_01_code_N": "As Directed",
+                  "SDP_02_description": "Ship/Delivery Pattern Time Code",
+                  "SDP_02": "F",
+                  "SDP_02_code_F": "As Directed"
+                },
+                {
+                  "FST": "Forecast Schedule",
+                  "FST_01_description": "Quantity",
+                  "FST_01": "0",
+                  "FST_02_description": "Forecast Qualifier",
+                  "FST_02": "Z",
+                  "FST_02_code_Z": "Mutually Defined",
+                  "FST_03_description": "Timing Qualifier",
+                  "FST_03": "Z",
+                  "FST_03_code_Z": "Mutually Defined",
+                  "FST_04_description": "Date",
+                  "FST_04": "201130"
+                },
+                {
+                  "ATH": "Resource Authorization",
+                  "ATH_01_description": "Resource Authorization Code",
+                  "ATH_01": "PQ",
+                  "ATH_01_code_PQ": "Cumulative Quantity Required Prior to First Schedule Period",
+                  "ATH_02_description": "Date",
+                  "ATH_02": "201129",
+                  "ATH_03_description": "Quantity",
+                  "ATH_03": "18476",
+                  "ATH_05_description": "Date",
+                  "ATH_05": "191221"
+                },
+                {
+                  "SHP": "Shipped/Received Information",
+                  "SHP_01_description": "Quantity Qualifier",
+                  "SHP_01": "01",
+                  "SHP_01_code_01": "Discrete Quantity",
+                  "SHP_02_description": "Quantity",
+                  "SHP_02": "485",
+                  "SHP_03_description": "Date/Time Qualifier",
+                  "SHP_03": "011",
+                  "SHP_03_code_011": "Shipped",
+                  "SHP_04_description": "Date",
+                  "SHP_04": "201124"
+                },
+                {
+                  "SHP": "Shipped/Received Information",
+                  "SHP_01_description": "Quantity Qualifier",
+                  "SHP_01": "02",
+                  "SHP_01_code_02": "Cumulative Quantity",
+                  "SHP_02_description": "Quantity",
+                  "SHP_02": "21468",
+                  "SHP_03_description": "Date/Time Qualifier",
+                  "SHP_03": "051",
+                  "SHP_03_code_051": "Cumulative Quantity Start",
+                  "SHP_04_description": "Date",
+                  "SHP_04": "191221",
+                  "SHP_06_description": "Date",
+                  "SHP_06": "201124"
+                },
+                {
+                  "LIN": "Item Identification",
+                  "LIN_02_description": "Product/Service ID Qualifier",
+                  "LIN_02": "BP",
+                  "LIN_02_code_BP": "Buyer's Part Number",
+                  "LIN_03_description": "Product/Service ID",
+                  "LIN_03": "04726774AA",
+                  "LIN_04_description": "Product/Service ID Qualifier",
+                  "LIN_04": "PO",
+                  "LIN_04_code_PO": "Purchase Order Number",
+                  "LIN_05_description": "Product/Service ID",
+                  "LIN_05": "NA"
+                },
+                {
+                  "UIT": "Unit Detail",
+                  "UIT_01_description": "Composite Unit of Measure",
+                  "UIT_01": "EA"
+                },
+                {
+                  "SDP": "Ship/Delivery Pattern",
+                  "SDP_01_description": "Ship/Delivery or Calendar Pattern Code",
+                  "SDP_01": "Y",
+                  "SDP_01_code_Y": "None (Also Used to Cancel or Override a Previous Pattern)",
+                  "SDP_02_description": "Ship/Delivery Pattern Time Code",
+                  "SDP_02": "Y",
+                  "SDP_02_code_Y": "None (Also Used to Cancel or Override a Previous Pattern)"
+                },
+                {
+                  "FST": "Forecast Schedule",
+                  "FST_01_description": "Quantity",
+                  "FST_01": "0",
+                  "FST_02_description": "Forecast Qualifier",
+                  "FST_02": "Z",
+                  "FST_02_code_Z": "Mutually Defined",
+                  "FST_03_description": "Timing Qualifier",
+                  "FST_03": "Z",
+                  "FST_03_code_Z": "Mutually Defined",
+                  "FST_04_description": "Date",
+                  "FST_04": "201130"
+                },
+                {
+                  "ATH": "Resource Authorization",
+                  "ATH_01_description": "Resource Authorization Code",
+                  "ATH_01": "FI",
+                  "ATH_01_code_FI": "Finished (Labor, Material, and Overhead/Burden)",
+                  "ATH_03_description": "Quantity",
+                  "ATH_03": "18476",
+                  "ATH_05_description": "Date",
+                  "ATH_05": "191221"
+                },
+                {
+                  "ATH": "Resource Authorization",
+                  "ATH_01_description": "Resource Authorization Code",
+                  "ATH_01": "MT",
+                  "ATH_01_code_MT": "Material",
+                  "ATH_03_description": "Quantity",
+                  "ATH_03": "18476",
+                  "ATH_05_description": "Date",
+                  "ATH_05": "191221"
+                },
+                {
+                  "CTT": "Transaction Totals",
+                  "CTT_01_description": "Number of Line Items",
+                  "CTT_01": "2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

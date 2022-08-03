@@ -1,0 +1,927 @@
+<section id="a" style="width: 70%; background-color:rgba(239, 239, 238,1);float:right; scroll-behavior: auto;">
+    <%
+    String.prototype.toProperCase = function () {
+        return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      };
+      var align_main_length = 0;
+      var align_holder = "";;
+      var counter_for_2_3 = 0;
+      var temp_align_holder = [];
+      var gs_key = "";
+      var parsing_counter = 0;
+      var segment_key = "";
+      var HCounter = 1;
+      var segment_key_2 = "$$$";
+      var counter = 0;
+      var tag_counter = 3;
+      var deep_check = 0;
+      var JumpForChild = "false";
+      for (let interchanges in x12Data.json) { 
+        for(let interchange_idx in x12Data.json[interchanges]){
+          
+           for (let interchange_keys in x12Data.json[interchanges][interchange_idx]){
+            if (counter === 0){
+              segment_key = interchange_keys;
+              counter++;
+            }
+           else if(counter!= 0){
+              segment_key_2 = interchange_keys.split("_")[0];
+            }
+            if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+              counter = 0;
+              segment_key_2 = "$$$";
+              //********Level Two********
+              for (let LevelTwo_idx in x12Data.json[interchanges][interchange_idx][interchange_keys])
+                  {
+                  for (let LevelTwo_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx]){
+                    if (counter === 0){
+                      segment_key = LevelTwo_keys;
+                      counter++;
+                    }
+                   else if(counter!= 0){
+                      segment_key_2 = LevelTwo_keys.split("_")[0];
+                    }
+                    
+                    if(segment_key != segment_key_2 && segment_key_2 != "$$$")
+                    { 
+                          counter = 0;
+                          segment_key_2 = "$$$";
+                          //********Level Three********
+                          for (let LevelThree_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys])
+                              {
+                              for (let LevelThree_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx]){
+                                if (counter === 0){
+                                  counter++;
+                                }
+                              else if (counter === 1){
+                                  segment_key = LevelThree_keys;
+                                  counter++;
+                                }
+                               else if(counter!= 1 && counter!= 0){
+                                  segment_key_2 = LevelThree_keys.split("_")[0];
+                                }
+                                
+                              if(segment_key != segment_key_2 && segment_key_2 != "$$$"){
+                                  // counter = 0;
+                              
+                                  //********Level Four********
+                                  for (let LevelFour_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys])
+                                      {
+                                         counter = 0;
+                                         segment_key_2 = "$$$";
+                                         JumpForChild = "false";
+                                      for (let LevelFour_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx]){
+                                        if (counter === 0){
+                                          segment_key = LevelFour_keys;
+                                          if (LevelFour_keys.match(/^.*_loop$/)) {
+                                            JumpForChild = "true";
+                                        }
+                                          counter++;
+                                        }
+                                       else if(counter!= 0){
+                                          segment_key_2 = LevelFour_keys.split("_")[0];
+                                        }
+                                        
+                                        if((segment_key != segment_key_2 && segment_key_2 != "$$$") || JumpForChild == "true"){
+                                  
+                                          //**************** Level Five ****************
+                                          for (let LevelFive_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys])
+                                            {
+                                               counter = 0;
+                                               segment_key_2 = "$$$";
+                                               JumpForChild = "false";
+                                            for (let LevelFive_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx]){
+                                              if (counter === 0){
+                                              segment_key = LevelFive_keys;
+                                              counter++;
+                                              if (LevelFive_keys.match(/^.*_loop$/)) {
+                                                JumpForChild = "true";
+                                            }
+                                              }
+                                             else if(counter!= 0){
+                                              segment_key_2 = LevelFive_keys.split("_")[0];
+                                              }
+                                              
+                                              if(segment_key != segment_key_2 && segment_key_2 != "$$$" || JumpForChild == "true"  ){
+                                                
+                                                //**************** Level Six ****************
+                                                for (let LevelSix_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys])
+                                                  {
+                                                     counter = 0;
+                                                     segment_key_2 = "$$$";
+                                                     JumpForChild = "false";
+                                                  for (let LevelSix_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx]){
+                                                    if (counter === 0){
+                                                    segment_key = LevelSix_keys;
+                                                    counter++;
+                                                    if (LevelSix_keys.match(/^.*_loop$/)) {
+                                                      JumpForChild = "true";
+                                                  }
+                                                    }
+                                                   else if(counter!= 0){
+                                                    segment_key_2 = LevelSix_keys.split("_")[0];
+                                                    }
+                                                    
+                                                    if(segment_key != segment_key_2 && segment_key_2 != "$$$" || JumpForChild == "true" ){
+                                                      
+                                                      //**************** Level Seven ****************
+                                                      for (let LevelSeven_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys])
+                                                        {
+                                                           counter = 0;
+                                                           segment_key_2 = "$$$";
+                                                           JumpForChild = "false";
+                                                        for (let LevelSeven_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx]){
+                                                          if (counter === 0){
+                                                          segment_key = LevelSeven_keys;
+                                                          counter++;
+                                                          if (LevelSeven_keys.match(/^.*_loop$/)) {
+                                                            JumpForChild = "true";
+                                                        }
+                                                          }
+                                                         else if(counter!= 0){
+                                                          segment_key_2 = LevelSeven_keys.split("_")[0];
+                                                          }
+                                                          
+                                                          if(segment_key != segment_key_2 && segment_key_2 != "$$$" || JumpForChild == "true"){
+                                                          
+                                                            //**************** Level Eight ****************
+                                                            for (let LevelEight_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys])
+                                                              {
+                                                                 counter = 0;
+                                                                 segment_key_2 = "$$$";
+                                                                 JumpForChild = "false";
+                                                              for (let LevelEight_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx]){
+                                                                if (counter === 0){
+                                                                segment_key = LevelEight_keys;
+                                                                counter++;
+                                                                if (LevelEight_keys.match(/^.*_loop$/)) {
+                                                                  JumpForChild = "true";
+                                                              }
+                                                                }
+                                                               else if(counter!= 0){
+                                                                segment_key_2 = LevelEight_keys.split("_")[0];
+                                                                }
+                                                                
+                                                                if(segment_key != segment_key_2 && segment_key_2 != "$$$" || JumpForChild == "true"){
+                                                                
+                                                                  //************ Level Nine ********************
+                                                                  for (let LevelNine_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys])
+                                                                    {
+                                                                       counter = 0;
+                                                                       segment_key_2 = "$$$";
+                                                                       JumpForChild = "false";
+                                                                    for (let LevelNine_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx]){
+                                                                      if (counter === 0){
+                                                                      segment_key = LevelNine_keys;
+                                                                      counter++;
+                                                                      if (LevelNine_keys.match(/^.*_loop$/)) {
+                                                                        JumpForChild = "true";
+                                                                    }
+                                                                      }
+                                                                     else if(counter!= 0){
+                                                                      segment_key_2 = LevelNine_keys.split("_")[0];
+                                                                      }
+                                                                      
+                                                                      if(segment_key != segment_key_2 && segment_key_2 != "$$$"  || JumpForChild == "true"){
+                                                                      
+                                                                         //**************** Level Ten ****************
+                                                                        for (let LevelTen_idx in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys])
+                                                                          {
+                                                                             counter = 0;
+                                                                             JumpForChild = "false";
+                                                                             segment_key_2 = "$$$";
+                                                                          for (let LevelTen_keys in x12Data.json[interchanges][interchange_idx][interchange_keys][LevelTwo_idx][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx]){
+                                                                            if (counter === 0){
+                                                                
+                                                                            segment_key = LevelTen_keys;
+                                                                            counter++;
+                                                                            if (LevelTen_keys.match(/^.*_loop$/)) {
+                                                                              JumpForChild = "true";
+                                                                          }
+                                                                            }
+                                                                           else if(counter!= 0){
+                                                                            segment_key_2 = LevelTen_keys.split("_")[0];
+                                                                            }
+                                                                            
+                                                                            if(segment_key != segment_key_2 && segment_key_2 != "$$$" || JumpForChild == "true"){
+                                                                              // var gs_key = interchange_keys;
+                                                                            }
+                                                                            else if(LevelTen_keys === segment_key){
+                                                                              align_main_length = LevelNine_keys.length;
+                                                                              %>
+                                                                              <div id= <%=LevelTen_keys+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelTen_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys];%></div>
+                                                                              <%
+                                                                              parsing_counter++;
+                                                                            }
+                                                                              else{           
+                                                                                var s = LevelTen_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                                                                if(align_holder != LevelTen_keys.slice(0,align_main_length+3) ){
+                                                                                  align_holder = LevelTen_keys.slice(0,align_main_length+3); 
+                                                                                }
+                                                                                if(LevelTen_keys.slice(0,align_main_length+3) === align_holder){ 
+                                                                                  temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys]);
+                                                                                  counter_for_2_3++;
+                                                                                  if(counter_for_2_3===2){
+                                                                                    if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys]]=== undefined){
+                                                                                      
+                                                                                        console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                                                        %>
+                                                                    <div id= 
+                                                            <%  
+                                                    if(parseInt(s.split("_")[1])>9){
+                                                        %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                    <%
+                                                    }
+                                                    else{
+                                                    %>
+                                                    <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                    <%
+                                                    }
+                                                    
+                                                     %>
+                                                          onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                        <span><%= temp_align_holder[0]%></span>
+                                                        <span>    :    </span>
+                                                        <span><%= temp_align_holder[1]%></span>
+                                                        </div>
+                                                                    <%
+                                                                                        temp_align_holder = [];
+                                                                                        counter_for_2_3 = 0;
+                                                                                        align_holder = "$$$";
+                                                                                    }
+                                                                                    
+                                                                                    
+                                                                                    else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys]] != undefined){
+                                                                                      
+                                                                                        temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys][LevelTen_idx][LevelTen_keys]]);
+                                                                                        console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                                                        %>
+                                                                                        <div id= 
+                                                                                <%  
+                                                                        if(parseInt(s.split("_")[1])>9){
+                                                                            %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                                        <%
+                                                                        }
+                                                                        else{
+                                                                        %>
+                                                                        <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                                        <%
+                                                                        }
+                                                                        
+                                                                         %>
+                                                                              onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                                            <span><%= temp_align_holder[0]%></span>
+                                                                            <span>    :    </span>
+                                                                            <span><%= temp_align_holder[1]%></span>
+                                                                            <span>    <>    </span>
+                                                                            <span><%= temp_align_holder[2]%></span>
+                                                                            </div>
+                                                                                        <%
+                                                                                      }
+                                                                                  }
+                                                                                  else if(counter_for_2_3===3){
+                                                                                    temp_align_holder = [];
+                                                                                        counter_for_2_3 = 0;
+                                                                                        align_holder = "$$$";
+                                                                                  }
+                                                                                }
+                                                                            }
+                                                                          
+                                                                          }
+                                                                          }
+                                                                        //****************** End of Ten ***************
+                                                                      }
+                                                                      else if(LevelNine_keys === segment_key){
+                                                                        align_main_length = LevelNine_keys.length;
+                                                                        %>
+                                                                        <div id= <%=LevelNine_keys+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelNine_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys];%></div>
+                                                                        <%
+                                                                        parsing_counter++;
+                                                                      }
+                                                                      else{      
+                                                                        var s = LevelNine_keys.replace(/([a-z])([A-Z])/g, '$1 $2');  
+                                                                        if(align_holder != LevelNine_keys.slice(0,align_main_length+3) ){
+                                                                          align_holder = LevelNine_keys.slice(0,align_main_length+3); 
+                                                                        }
+                                                                        if(LevelNine_keys.slice(0,align_main_length+3) === align_holder){ 
+                                                                          temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys]);
+                                                                          counter_for_2_3++;
+                                                                          if(counter_for_2_3===2){
+                                                                            if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys]]=== undefined){
+                                                                              
+                                                                                console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                                                %>
+                                                                    <div id= 
+                                                            <%  
+                                                    if(parseInt(s.split("_")[1])>9){
+                                                        %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                    <%
+                                                    }
+                                                    else{
+                                                    %>
+                                                    <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                    <%
+                                                    }
+                                                    
+                                                     %>
+                                                          onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                        <span><%= temp_align_holder[0]%></span>
+                                                        <span>    :    </span>
+                                                        <span><%= temp_align_holder[1]%></span>
+                                                        </div>
+                                                                    <%
+                                                                                temp_align_holder = [];
+                                                                                counter_for_2_3 = 0;
+                                                                                align_holder = "$$$";
+                                                                            }
+                                                                            
+                                                                            
+                                                                            else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys]] != undefined){
+                                                                              
+                                                                                temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys][LevelNine_idx][LevelNine_keys]]);
+                                                                                console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                                                %>
+                                                                                <div id= 
+                                                                        <%  
+                                                                if(parseInt(s.split("_")[1])>9){
+                                                                    %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                                <%
+                                                                }
+                                                                else{
+                                                                %>
+                                                                <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                                <%
+                                                                }
+                                                                
+                                                                 %>
+                                                                      onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                                    <span><%= temp_align_holder[0]%></span>
+                                                                    <span>    :    </span>
+                                                                    <span><%= temp_align_holder[1]%></span>
+                                                                    <span>    <>    </span>
+                                                                    <span><%= temp_align_holder[2]%></span>
+                                                                    </div>
+                                                                                <%
+                                                                              }
+                                                                          }
+                                                                          else if(counter_for_2_3===3){
+                                                                            temp_align_holder = [];
+                                                                                counter_for_2_3 = 0;
+                                                                                align_holder = "$$$";
+                                                                          }
+                                                                        }
+                                                                    }
+                                                                    
+                                                                    }
+                                                                    }
+                                                                  //****************** End of Nine ***************
+                                                                }
+                                                                else if(LevelEight_keys === segment_key){
+                                                                  align_main_length = LevelEight_keys.length;
+                                                                  %>
+                                                                  
+                                                                  <div id= <%=LevelEight_keys+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelEight_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys];%></div>
+                                                                  <%
+                                                                  parsing_counter++;
+                                                                }
+                                                                else{   
+                                                                  var s = LevelEight_keys.replace(/([a-z])([A-Z])/g, '$1 $2');        
+                                                                  if(align_holder != LevelEight_keys.slice(0,align_main_length+3) ){
+                                                                    align_holder = LevelEight_keys.slice(0,align_main_length+3); 
+                                                                  }
+                                                                  if(LevelEight_keys.slice(0,align_main_length+3) === align_holder){ 
+                                                                    temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys]);
+                                                                    counter_for_2_3++;
+                                                                    if(counter_for_2_3===2){
+                                                                      if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys]]=== undefined){
+                                                                        
+                                                                          console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                                          %>
+                                                                    <div id= 
+                                                            <%  
+                                                    if(parseInt(s.split("_")[1])>9){
+                                                        %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                    <%
+                                                    }
+                                                    else{
+                                                    %>
+                                                    <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                    <%
+                                                    }
+                                                    
+                                                     %>
+                                                          onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                        <span><%= temp_align_holder[0]%></span>
+                                                        <span>    :    </span>
+                                                        <span><%= temp_align_holder[1]%></span>
+                                                        </div>
+                                                                    <%
+                                                                          temp_align_holder = [];
+                                                                          counter_for_2_3 = 0;
+                                                                          align_holder = "$$$";
+                                                                      }
+                                                                      
+                                                                      
+                                                                      else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys]] != undefined){
+                                                                        
+                                                                          temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys][LevelEight_idx][LevelEight_keys]]);
+                                                                          console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                                          %>
+                                                                          <div id= 
+                                                                  <%  
+                                                          if(parseInt(s.split("_")[1])>9){
+                                                              %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                          <%
+                                                          }
+                                                          else{
+                                                          %>
+                                                          <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                          <%
+                                                          }
+                                                          
+                                                           %>
+                                                                onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                              <span><%= temp_align_holder[0]%></span>
+                                                              <span>    :    </span>
+                                                              <span><%= temp_align_holder[1]%></span>
+                                                              <span>    <>    </span>
+                                                              <span><%= temp_align_holder[2]%></span>
+                                                              </div>
+                                                                          <%
+                                                                        }
+                                                                    }
+                                                                    else if(counter_for_2_3===3){
+                                                                      temp_align_holder = [];
+                                                                          counter_for_2_3 = 0;
+                                                                          align_holder = "$$$";
+                                                                    }
+                                                                  }
+                                                              }
+                                                              
+                                                              }
+                                                              }
+                                                            //****************** End of Eight ***************
+                                                          }
+                                                          else if(LevelSeven_keys === segment_key){
+                                                            align_main_length = LevelSeven_keys.length;
+                                                            %>
+                                                            <div id= <%=LevelSeven_keys+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelSeven_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys];%></div>
+                                                            <%
+                                                            parsing_counter++;
+                                                          }
+                                                          else{           
+                                                            var s = LevelSeven_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                                            if(align_holder != LevelSeven_keys.slice(0,align_main_length+3) ){
+                                                              align_holder = LevelSeven_keys.slice(0,align_main_length+3); 
+                                                            }
+                                                            if(LevelSeven_keys.slice(0,align_main_length+3) === align_holder){ 
+                                                              temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys]);
+                                                              counter_for_2_3++;
+                                                              if(counter_for_2_3===2){
+                                                                if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys]]=== undefined){
+                                                                  
+                                                                    console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                                    %>
+                                                                    <div id= 
+                                                            <%  
+                                                    if(parseInt(s.split("_")[1])>9){
+                                                        %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                                    <%
+                                                    }
+                                                    else{
+                                                    %>
+                                                    <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                                    <%
+                                                    }
+                                                    
+                                                     %>
+                                                          onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                        <span><%= temp_align_holder[0]%></span>
+                                                        <span>    :    </span>
+                                                        <span><%= temp_align_holder[1]%></span>
+                                                        </div>
+                                                                    <%
+                                                                    temp_align_holder = [];
+                                                                    counter_for_2_3 = 0;
+                                                                    align_holder = "$$$";
+                                                                }
+                                                                
+                                                                
+                                                                else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys]] != undefined){
+                                                                  
+                                                                    temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys][LevelSeven_idx][LevelSeven_keys]]);
+                                                                    
+                                                                    console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                                    %>
+                                                              <div id= 
+                                                      <%  
+                                              if(parseInt(s.split("_")[1])>9){
+                                                  %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                              <%
+                                              }
+                                              else{
+                                              %>
+                                              <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                              <%
+                                              }
+                                              
+                                               %>
+                                                    onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                  <span><%= temp_align_holder[0]%></span>
+                                                  <span>    :    </span>
+                                                  <span><%= temp_align_holder[1]%></span>
+                                                  <span>    <>    </span>
+                                                  <span><%= temp_align_holder[2]%></span>
+                                                  </div>
+                                                              <%
+                                                                  }
+                                                              }
+                                                              else if(counter_for_2_3===3){
+                                                                temp_align_holder = [];
+                                                                    counter_for_2_3 = 0;
+                                                                    align_holder = "$$$";
+                                                              }
+                                                            }
+                                                        }
+                                                        
+                                                        }
+                                                        }
+                                                      //****************** End of Seven ***************
+                                                    }
+                                                    else if(LevelSix_keys === segment_key){
+                                                      align_main_length = LevelSix_keys.length;
+                                                      %>
+                                                      <div id= <%=LevelSix_keys+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelSix_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys];%></div>
+                                                      <%
+                                                      parsing_counter++;
+                                                    }
+                                                    else{           
+                                                      var s = LevelSix_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                                      if(align_holder != LevelSix_keys.slice(0,align_main_length+3) ){
+                                                        align_holder = LevelSix_keys.slice(0,align_main_length+3); 
+                                                      }
+                                                      if(LevelSix_keys.slice(0,align_main_length+3) === align_holder){ 
+                                                        temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys]);
+                                                        counter_for_2_3++;
+                                                        if(counter_for_2_3===2){
+                                                          if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys]]=== undefined){
+                                                            
+                                                              console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                              %>
+                                                              <div id= 
+                                                      <%  
+                                              if(parseInt(s.split("_")[1])>9){
+                                                  %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                              <%
+                                              }
+                                              else{
+                                              %>
+                                              <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                              <%
+                                              }
+                                              
+                                               %>
+                                                    onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                  <span><%= temp_align_holder[0]%></span>
+                                                  <span>    :    </span>
+                                                  <span><%= temp_align_holder[1]%></span>
+                                                  </div>
+                                                              <%
+                                                              temp_align_holder = [];
+                                                              counter_for_2_3 = 0;
+                                                              align_holder = "$$$";
+                                                          }
+                                                          
+                                                          
+                                                          else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys]] != undefined){
+                                                            
+                                                              temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys][LevelSix_idx][LevelSix_keys]]);
+                                                              console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                              %>
+                                                              <div id= 
+                                                      <%  
+                                              if(parseInt(s.split("_")[1])>9){
+                                                  %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                              <%
+                                              }
+                                              else{
+                                              %>
+                                              <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                              <%
+                                              }
+                                              
+                                               %>
+                                                    onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                                  <span><%= temp_align_holder[0]%></span>
+                                                  <span>    :    </span>
+                                                  <span><%= temp_align_holder[1]%></span>
+                                                  <span>    <>    </span>
+                                                  <span><%= temp_align_holder[2]%></span>
+                                                  </div>
+                                                              <%
+                                                            
+                                                          }
+                                                        }
+                                                        else if(counter_for_2_3===3){
+                                                          temp_align_holder = [];
+                                                              counter_for_2_3 = 0;
+                                                              align_holder = "$$$";
+                                                        }
+                                                      }
+                                                  }
+  
+                                                  
+                                                  }
+                                                  }
+                                                //****************** End of Six ***************
+                                              }
+                                              else if(LevelFive_keys === segment_key){
+                                                align_main_length = LevelFive_keys.length;
+                                                %>
+                                                <div id= <%=LevelFive_keys+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelFive_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys];%></div>
+                                                <%
+                                                parsing_counter++;
+                                              }
+                                              else{
+                                                var s = LevelFive_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                                if(align_holder != LevelFive_keys.slice(0,align_main_length+3) ){
+                                                  align_holder = LevelFive_keys.slice(0,align_main_length+3); 
+                                                }
+                                                if(LevelFive_keys.slice(0,align_main_length+3) === align_holder){ 
+                                                  temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys]);
+                                                  counter_for_2_3++;
+                                                  if(counter_for_2_3===2){
+                                                    if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys]]=== undefined){
+                                                      
+                                                        console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                        %>
+                                                        <div id= 
+                                                <%  
+                                        if(parseInt(s.split("_")[1])>9){
+                                            %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                        <%
+                                        }
+                                        else{
+                                        %>
+                                        <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                        <%
+                                        }
+                                        
+                                         %>
+                                              onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                            <span><%= temp_align_holder[0]%></span>
+                                            <span>    :    </span>
+                                            <span><%= temp_align_holder[1]%></span>
+                                            </div>
+                                                        <%
+                                                        //HCounter++;
+                                                        temp_align_holder = [];
+                                                        counter_for_2_3 = 0;
+                                                        align_holder = "$$$";
+                                                    }
+                                                    
+                                                    
+                                                    else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys]] != undefined){
+                                                      
+                                                        temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys][LevelFive_idx][LevelFive_keys]]);
+                                                        console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                        %>
+                                                    <div id= 
+                                            <%  
+                                    if(parseInt(s.split("_")[1])>9){
+                                        %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                    <%
+                                    }
+                                    else{
+                                    %>
+                                    <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                    <%
+                                    }
+                                    
+                                     %>
+                                          onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                        <span><%= temp_align_holder[0]%></span>
+                                        <span>    :    </span>
+                                        <span><%= temp_align_holder[1]%></span>
+                                        <span>    <>    </span>
+                                        <span><%= temp_align_holder[2]%></span>
+                                        </div>
+                                                    <%
+                                                    //HCounter++; 
+                                                      
+                                                    }
+                                                  }
+                                                  else if(counter_for_2_3===3){
+                                                    temp_align_holder = [];
+                                                        counter_for_2_3 = 0;
+                                                        align_holder = "$$$";
+                                                  }
+                                                }
+                                              }
+                                        
+                                          }
+                                        }
+                                            
+                                            
+                                          //****************** End of Five ***************
+                                                        }
+                                        //******LEVEL FOUR********
+                                        else if(LevelFour_keys === segment_key){
+                                          align_main_length = LevelFour_keys.length;
+                                            HCounter = 0;   
+                                        %>
+                                        <div id= <%=segment_key+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelFour_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys];%></div>
+                                        <%
+                                        parsing_counter++;
+                                        tag_counter++;
+                                        }
+                                        else{ 
+                                            var s = LevelFour_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                            if(align_holder != LevelFour_keys.slice(0,align_main_length+3) ){
+                                              align_holder = LevelFour_keys.slice(0,align_main_length+3); 
+                                            }
+                                            if(LevelFour_keys.slice(0,align_main_length+3) === align_holder){ 
+                                              temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys]);
+                                              counter_for_2_3++;
+                                              if(counter_for_2_3===2){
+                                                if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys]]=== undefined){
+                                                  
+                                                    console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]);
+                                                    %>
+                                        <div id= 
+                                <%  
+                        if(parseInt(s.split("_")[1])>9){
+                            %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                        <%
+                        }
+                        else{
+                        %>
+                        <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                        <%
+                        }
+                        
+                         %>
+                              onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                            <span><%= temp_align_holder[0]%></span>
+                            <span>    :    </span>
+                            <span><%= temp_align_holder[1]%></span>
+                            </div>
+                                        <%
+                                        //HCounter++;
+                                                    temp_align_holder = [];
+                                                    counter_for_2_3 = 0;
+                                                    align_holder = "$$$";
+                                                }
+                                                
+                                                
+                                                else if(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys]] != undefined){
+                                                  
+                                                    temp_align_holder.push(x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys+"_code_"+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys][LevelFour_idx][LevelFour_keys]]);
+                                                    console.log(temp_align_holder[0]+"  :  "+temp_align_holder[1]+" <> "+temp_align_holder[2]);
+                                                    %>
+                                                    <div id= 
+                                            <%  
+                                    if(parseInt(s.split("_")[1])>9){
+                                        %><%= segment_key+(parsing_counter-1)+"-0"+s.split("_")[1]; %>
+                                    <%
+                                    }
+                                    else{
+                                    %>
+                                    <%=segment_key+(parsing_counter-1)+"-0"+s.split("_")[1];%>
+                                    <%
+                                    }
+                                    
+                                     %>
+                                          onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);">
+                                        <span><%= temp_align_holder[0]%></span>
+                                        <span>    :    </span>
+                                        <span><%= temp_align_holder[1]%></span>
+                                        <span>    <>    </span>
+                                        <span><%= temp_align_holder[2]%></span>
+                                        </div>
+                                                    <%
+                                                    //HCounter++;
+                                                  
+                                                }
+                                              }
+                                              else if(counter_for_2_3===3){
+                                                temp_align_holder = [];
+                                                    counter_for_2_3 = 0;
+                                                    align_holder = "$$$";
+                                              }
+                                            }
+                                           
+                                    }
+                                    
+                                      }
+                                    }
+                                }
+                                //*******LEVEL THREE*******
+                                else if(LevelThree_keys === segment_key){
+
+                                    HCounter = 0;
+                                    %>
+                                    <div id= <%= segment_key+parsing_counter %>  onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelThree_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys];%></div>
+                           <%
+                           parsing_counter++;
+                                }
+
+                               else{ 
+                                if(LevelThree_keys.slice(0,2) != "ST"){
+                                  %>
+                                  <div id="Transaction" ><span style="color:rgb(50, 73, 96);font-weight: bold;font-size: 38px; color:rgb(124,124,130);"><%= LevelThree_keys %></span><span style="color:rgb(50, 73, 96);font-weight: bold;font-size: 32px; color:rgb(124,124,130);">                    <%=x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys];%></span></div>
+                         <%
+                                }
+                                  if(LevelThree_keys.slice(0,2) === "ST"){
+                                    var s = LevelThree_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                                HCounter++;
+                                %>
+                                <div id= 
+                                <%  
+                        if(HCounter>9){
+                            %><%= segment_key+(parsing_counter-1)+"-0"+HCounter; %>
+                        <%
+                        }
+                        else{
+                        %>
+                        <%=segment_key+(parsing_counter-1)+"-00"+HCounter;%>
+                        <%
+                        }
+                        
+                         %>
+                             onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);"><%= s.split("_")[2]+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys][LevelThree_idx][LevelThree_keys]; %></div>
+                                <%
+                      }  
+                            }
+                            
+                              }
+                            }
+                        
+                    }
+                    //*******LEVEL TWO*******
+                    else if(LevelTwo_keys === segment_key){
+                        HCounter = 0;
+                        %>
+
+               <div id= <%=segment_key+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= LevelTwo_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys];%></div>
+               <%
+               parsing_counter++;
+            }
+                    else{ 
+                      
+                        var s = LevelTwo_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                        HCounter++;
+                        %>
+                        <div id= 
+                        <%  
+                if(HCounter>9){
+                    %><%= segment_key+(parsing_counter-1)+"-0"+HCounter; %>
+                <%
+                }
+                else{
+                %>
+                <%=segment_key+(parsing_counter-1)+"-00"+HCounter;%>
+                <%
+                }
+                
+                 %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);""><%= s.split("_")[2]+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys][[LevelTwo_idx]][LevelTwo_keys];%></div>
+                 <%
+               
+                   
+                }
+                
+                  }
+                }
+            }
+            //*******LEVEL ONE*******
+            else if(interchange_keys === segment_key){
+               %>
+               <div id= <%=segment_key+parsing_counter %> onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)" style="color:slategrey;font-weight: bold;font-size: 25px; color:rgb(124,124,130);"><%= interchange_keys+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys];%></div>
+               <%
+                parsing_counter++;
+            }
+            else{ 
+                var s = interchange_keys.replace(/([a-z])([A-Z])/g, '$1 $2');
+                %>
+                <div id= <%  
+                if(HCounter>9){
+                    %><%= segment_key+(parsing_counter-1)+"-0"+HCounter; %>
+                <%
+                }
+                else{
+                %>
+                <%=segment_key+(parsing_counter-1)+"-00"+HCounter;%>
+                <%
+                }
+                
+                 %>
+                onmouseover="onmouseoveragent(this.id)" onmouseout="onmouseoutagent(this.id)"  style="color:rgb(238, 238, 238);font-weight: bold; color:rgb(124,124,130);"><%= s.split("_")[2]+" : "+x12Data.json[interchanges][interchange_idx][interchange_keys]; %></div>
+                <%
+                HCounter++;
+           }
+        }
+      }
+      }
+    
+    %>
+  </section>

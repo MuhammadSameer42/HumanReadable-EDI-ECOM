@@ -1,0 +1,140 @@
+.bodycolor {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+#b {
+  font-family: monospace;
+  font-size: 18px;
+  height: 100%;
+  overflow: scroll; 
+  max-height: 100%;
+  
+  
+}
+#b div span {
+  
+}
+#b div {
+  float: left;
+  width: 90%;
+  
+}
+#a {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #656666;
+   overflow: auto; 
+   max-height: 100%;
+   max-width: 100%;
+}
+.sterik-des {
+  font-size: 16px;
+}
+.header-1 {
+  background-color: #e1e1e1;
+    margin: 4px 0px;
+    padding: 4px;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-1 #ISA0 {
+  font-weight: 100;
+}
+.head-1 {
+  
+  font-size:20px;
+  color: #5fad7d;
+
+}
+.head-1:hover {
+  text-decoration: underline;
+  text-decoration-color: #5fad7d;
+  text-decoration-thickness: 3px;
+}
+.descp-1 {
+  font-size: 20px;
+  color: rgb(124,124,130);
+}
+.descp-1:hover {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-decoration-thickness: 3px;
+  cursor: pointer;
+}
+.descp-2:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(95, 95, 95);
+  text-decoration-thickness: 2.5px;
+  color: rgb(53, 53, 53);
+  cursor: pointer;
+}
+.top-header {
+  background-color: #ddd;
+  width: 100%;
+  position: relative;
+}
+.top-header img {
+  width: 200px;
+  height: 70px;
+  padding: 5px 30px;
+}
+.right-btns {
+  float: right;
+  align-items: center;
+  display: inline-block;
+  margin-top: 25px;
+  padding-right: 25px;
+}
+.right-btns button {
+  background-color: #efefee;
+  border: none;
+  color: #4caf50;
+  padding: 8px 16px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#b::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+ ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+ ::-webkit-scrollbar-thumb {
+  background: rgb(170, 170, 170); 
+}
+
+/*  on hover */
+ ::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.arrow-right {
+  float: left;
+  margin-top: 12px;
+  margin-right: 5px;
+  background-color: #4caf50;
+  /* border-style: hidden; */
+  border-color: #4caf50;
+  border-style: dashed;
+  width: 14px;
+  height: 14px;
+  padding: 1px 2px;
+  border-radius: 20px;
+  font-size: 7px;
+  text-align: center;
+
+}
+
+
+/*Making the element inline-block*/
+/*Assign proper font-size to the inline block element*/
+div span {
+ 
+                   
+}

@@ -1,0 +1,1 @@
+java -jar "edireader-json-basic-5.6.2.jar" --annotate=yes "78978932442.txt" "stest.json"
